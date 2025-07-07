@@ -47,7 +47,7 @@ namespace SportingMall
                            || (CheckNumeric(columns[2]) == false)
                            || (argProduct.ContainsKey(columns[1]) == false)
                            || (int.Parse(columns[2]) < 0 == true)
-                           || (int.Parse(columns[2]) >= 10000 == true))
+                           || (int.Parse(columns[2]) > 9999 == true))
                         {
                             //エラーメッセージ設定
                             argMessage = string.Format(MessageResource.ERR003, this.MasterName, parser.LineNumber - 1, string.Join(",", columns));
