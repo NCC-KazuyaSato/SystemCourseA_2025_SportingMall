@@ -105,6 +105,7 @@
             // 
             // grbDelivery
             // 
+            grbDelivery.BackColor = Color.Azure;
             grbDelivery.Controls.Add(txtDeliveryTel);
             grbDelivery.Controls.Add(lblDeliveryTel);
             grbDelivery.Controls.Add(txtDeliveryPostal);
@@ -113,6 +114,8 @@
             grbDelivery.Controls.Add(lblDeliveryAddress);
             grbDelivery.Controls.Add(lblDeliveryName);
             grbDelivery.Controls.Add(txtDeliveryName);
+            grbDelivery.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            grbDelivery.ForeColor = Color.Navy;
             grbDelivery.Location = new Point(32, 23);
             grbDelivery.Name = "grbDelivery";
             grbDelivery.Size = new Size(420, 310);
@@ -122,6 +125,7 @@
             // 
             // txtDeliveryTel
             // 
+            txtDeliveryTel.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtDeliveryTel.ImeMode = ImeMode.Disable;
             txtDeliveryTel.Location = new Point(30, 256);
             txtDeliveryTel.MaxLength = 7;
@@ -134,6 +138,7 @@
             // lblDeliveryTel
             // 
             lblDeliveryTel.AutoSize = true;
+            lblDeliveryTel.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblDeliveryTel.Location = new Point(27, 233);
             lblDeliveryTel.Name = "lblDeliveryTel";
             lblDeliveryTel.Size = new Size(55, 15);
@@ -142,6 +147,7 @@
             // 
             // txtDeliveryPostal
             // 
+            txtDeliveryPostal.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtDeliveryPostal.ImeMode = ImeMode.Disable;
             txtDeliveryPostal.Location = new Point(30, 124);
             txtDeliveryPostal.MaxLength = 7;
@@ -154,6 +160,7 @@
             // lblDeliveryPostal
             // 
             lblDeliveryPostal.AutoSize = true;
+            lblDeliveryPostal.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblDeliveryPostal.Location = new Point(27, 101);
             lblDeliveryPostal.Name = "lblDeliveryPostal";
             lblDeliveryPostal.Size = new Size(55, 15);
@@ -162,6 +169,7 @@
             // 
             // txtDeliveryAddress
             // 
+            txtDeliveryAddress.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtDeliveryAddress.Location = new Point(30, 189);
             txtDeliveryAddress.MaxLength = 100;
             txtDeliveryAddress.Name = "txtDeliveryAddress";
@@ -171,6 +179,7 @@
             // lblDeliveryAddress
             // 
             lblDeliveryAddress.AutoSize = true;
+            lblDeliveryAddress.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblDeliveryAddress.Location = new Point(27, 166);
             lblDeliveryAddress.Name = "lblDeliveryAddress";
             lblDeliveryAddress.Size = new Size(31, 15);
@@ -180,6 +189,7 @@
             // lblDeliveryName
             // 
             lblDeliveryName.AutoSize = true;
+            lblDeliveryName.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblDeliveryName.Location = new Point(27, 37);
             lblDeliveryName.Name = "lblDeliveryName";
             lblDeliveryName.Size = new Size(31, 15);
@@ -188,6 +198,8 @@
             // 
             // txtDeliveryName
             // 
+            txtDeliveryName.BackColor = Color.White;
+            txtDeliveryName.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtDeliveryName.ImeMode = ImeMode.NoControl;
             txtDeliveryName.Location = new Point(30, 60);
             txtDeliveryName.MaxLength = 30;
@@ -198,6 +210,8 @@
             // grbBillType
             // 
             grbBillType.Controls.Add(cbxBillType);
+            grbBillType.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            grbBillType.ForeColor = Color.Navy;
             grbBillType.Location = new Point(32, 355);
             grbBillType.Name = "grbBillType";
             grbBillType.Size = new Size(420, 77);
@@ -208,6 +222,7 @@
             // cbxBillType
             // 
             cbxBillType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxBillType.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxBillType.FormattingEnabled = true;
             cbxBillType.Items.AddRange(new object[] { "届け先と同じ", "指定する" });
             cbxBillType.Location = new Point(30, 33);
@@ -219,6 +234,8 @@
             // grbDeadLine
             // 
             grbDeadLine.Controls.Add(dtpDeadLine);
+            grbDeadLine.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            grbDeadLine.ForeColor = Color.Navy;
             grbDeadLine.Location = new Point(475, 355);
             grbDeadLine.Name = "grbDeadLine";
             grbDeadLine.Size = new Size(420, 77);
@@ -229,10 +246,11 @@
             // dtpDeadLine
             // 
             dtpDeadLine.CustomFormat = "yyyy/MM/dd";
+            dtpDeadLine.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             dtpDeadLine.Format = DateTimePickerFormat.Custom;
-            dtpDeadLine.Location = new Point(40, 33);
+            dtpDeadLine.Location = new Point(30, 33);
             dtpDeadLine.Name = "dtpDeadLine";
-            dtpDeadLine.Size = new Size(200, 23);
+            dtpDeadLine.Size = new Size(133, 23);
             dtpDeadLine.TabIndex = 13;
             dtpDeadLine.Value = new DateTime(2025, 5, 29, 20, 20, 2, 0);
             // 
@@ -247,6 +265,8 @@
             grbBill.Controls.Add(lblBillName);
             grbBill.Controls.Add(txtBillName);
             grbBill.Enabled = false;
+            grbBill.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            grbBill.ForeColor = Color.Navy;
             grbBill.Location = new Point(475, 23);
             grbBill.Name = "grbBill";
             grbBill.Size = new Size(420, 310);
@@ -256,6 +276,7 @@
             // 
             // txtBillTel
             // 
+            txtBillTel.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtBillTel.ImeMode = ImeMode.Disable;
             txtBillTel.Location = new Point(30, 256);
             txtBillTel.MaxLength = 7;
@@ -268,6 +289,7 @@
             // lblBillTel
             // 
             lblBillTel.AutoSize = true;
+            lblBillTel.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblBillTel.Location = new Point(27, 233);
             lblBillTel.Name = "lblBillTel";
             lblBillTel.Size = new Size(55, 15);
@@ -276,6 +298,7 @@
             // 
             // txtBillPostal
             // 
+            txtBillPostal.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtBillPostal.ImeMode = ImeMode.Disable;
             txtBillPostal.Location = new Point(30, 124);
             txtBillPostal.MaxLength = 7;
@@ -288,6 +311,7 @@
             // lblBillPostal
             // 
             lblBillPostal.AutoSize = true;
+            lblBillPostal.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblBillPostal.Location = new Point(27, 101);
             lblBillPostal.Name = "lblBillPostal";
             lblBillPostal.Size = new Size(55, 15);
@@ -296,6 +320,7 @@
             // 
             // txtBillAddress
             // 
+            txtBillAddress.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtBillAddress.Location = new Point(30, 189);
             txtBillAddress.MaxLength = 100;
             txtBillAddress.Name = "txtBillAddress";
@@ -305,6 +330,7 @@
             // lblBillAddress
             // 
             lblBillAddress.AutoSize = true;
+            lblBillAddress.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblBillAddress.Location = new Point(27, 166);
             lblBillAddress.Name = "lblBillAddress";
             lblBillAddress.Size = new Size(31, 15);
@@ -314,6 +340,7 @@
             // lblBillName
             // 
             lblBillName.AutoSize = true;
+            lblBillName.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblBillName.Location = new Point(27, 37);
             lblBillName.Name = "lblBillName";
             lblBillName.Size = new Size(31, 15);
@@ -322,6 +349,7 @@
             // 
             // txtBillName
             // 
+            txtBillName.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtBillName.ImeMode = ImeMode.NoControl;
             txtBillName.Location = new Point(30, 60);
             txtBillName.MaxLength = 30;
@@ -365,6 +393,8 @@
             grbOrder.Controls.Add(cbxItem6);
             grbOrder.Controls.Add(lblItem1);
             grbOrder.Controls.Add(cbxItem1);
+            grbOrder.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            grbOrder.ForeColor = Color.Navy;
             grbOrder.Location = new Point(32, 461);
             grbOrder.Name = "grbOrder";
             grbOrder.Size = new Size(673, 224);
@@ -374,6 +404,7 @@
             // 
             // nudItem10
             // 
+            nudItem10.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem10.Location = new Point(587, 177);
             nudItem10.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem10.Name = "nudItem10";
@@ -383,6 +414,7 @@
             // 
             // nudItem5
             // 
+            nudItem5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem5.Location = new Point(253, 176);
             nudItem5.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem5.Name = "nudItem5";
@@ -392,6 +424,7 @@
             // 
             // nudItem8
             // 
+            nudItem8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem8.Location = new Point(587, 117);
             nudItem8.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem8.Name = "nudItem8";
@@ -401,6 +434,7 @@
             // 
             // nudItem3
             // 
+            nudItem3.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem3.Location = new Point(253, 116);
             nudItem3.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem3.Name = "nudItem3";
@@ -410,6 +444,7 @@
             // 
             // nudItem9
             // 
+            nudItem9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem9.Location = new Point(587, 148);
             nudItem9.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem9.Name = "nudItem9";
@@ -419,6 +454,7 @@
             // 
             // nudItem7
             // 
+            nudItem7.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem7.Location = new Point(587, 88);
             nudItem7.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem7.Name = "nudItem7";
@@ -428,6 +464,7 @@
             // 
             // nudItem4
             // 
+            nudItem4.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem4.Location = new Point(253, 147);
             nudItem4.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem4.Name = "nudItem4";
@@ -437,6 +474,7 @@
             // 
             // nudItem6
             // 
+            nudItem6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem6.Location = new Point(587, 59);
             nudItem6.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem6.Name = "nudItem6";
@@ -446,6 +484,7 @@
             // 
             // nudItem2
             // 
+            nudItem2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem2.Location = new Point(253, 87);
             nudItem2.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem2.Name = "nudItem2";
@@ -456,6 +495,7 @@
             // lblItem10
             // 
             lblItem10.AutoSize = true;
+            lblItem10.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItem10.Location = new Point(353, 180);
             lblItem10.Name = "lblItem10";
             lblItem10.Size = new Size(19, 15);
@@ -464,6 +504,7 @@
             // 
             // nudItem1
             // 
+            nudItem1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             nudItem1.Location = new Point(253, 58);
             nudItem1.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
             nudItem1.Name = "nudItem1";
@@ -474,6 +515,7 @@
             // label17
             // 
             label17.AutoSize = true;
+            label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             label17.Location = new Point(353, 120);
             label17.Name = "label17";
             label17.Size = new Size(19, 15);
@@ -483,6 +525,7 @@
             // lblItem5
             // 
             lblItem5.AutoSize = true;
+            lblItem5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItem5.Location = new Point(19, 179);
             lblItem5.Name = "lblItem5";
             lblItem5.Size = new Size(19, 15);
@@ -492,6 +535,7 @@
             // lblOrderCntColumn2
             // 
             lblOrderCntColumn2.AutoSize = true;
+            lblOrderCntColumn2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblOrderCntColumn2.Location = new Point(587, 41);
             lblOrderCntColumn2.Name = "lblOrderCntColumn2";
             lblOrderCntColumn2.Size = new Size(43, 15);
@@ -501,6 +545,7 @@
             // lblItem3
             // 
             lblItem3.AutoSize = true;
+            lblItem3.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItem3.Location = new Point(19, 119);
             lblItem3.Name = "lblItem3";
             lblItem3.Size = new Size(19, 15);
@@ -510,6 +555,7 @@
             // lblItem9
             // 
             lblItem9.AutoSize = true;
+            lblItem9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItem9.Location = new Point(353, 151);
             lblItem9.Name = "lblItem9";
             lblItem9.Size = new Size(19, 15);
@@ -519,6 +565,7 @@
             // lblOrderCntColumn1
             // 
             lblOrderCntColumn1.AutoSize = true;
+            lblOrderCntColumn1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblOrderCntColumn1.Location = new Point(253, 40);
             lblOrderCntColumn1.Name = "lblOrderCntColumn1";
             lblOrderCntColumn1.Size = new Size(43, 15);
@@ -528,6 +575,7 @@
             // lblItem7
             // 
             lblItem7.AutoSize = true;
+            lblItem7.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItem7.Location = new Point(353, 91);
             lblItem7.Name = "lblItem7";
             lblItem7.Size = new Size(19, 15);
@@ -537,6 +585,7 @@
             // lblItem4
             // 
             lblItem4.AutoSize = true;
+            lblItem4.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItem4.Location = new Point(19, 150);
             lblItem4.Name = "lblItem4";
             lblItem4.Size = new Size(19, 15);
@@ -546,6 +595,7 @@
             // cbxItem10
             // 
             cbxItem10.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem10.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxItem10.FormattingEnabled = true;
             cbxItem10.IntegralHeight = false;
             cbxItem10.Location = new Point(388, 177);
@@ -558,6 +608,7 @@
             // lblItem2
             // 
             lblItem2.AutoSize = true;
+            lblItem2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItem2.Location = new Point(19, 90);
             lblItem2.Name = "lblItem2";
             lblItem2.Size = new Size(19, 15);
@@ -567,6 +618,7 @@
             // cbxItem8
             // 
             cbxItem8.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxItem8.FormattingEnabled = true;
             cbxItem8.IntegralHeight = false;
             cbxItem8.Location = new Point(388, 117);
@@ -579,6 +631,7 @@
             // cbxItem5
             // 
             cbxItem5.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxItem5.FormattingEnabled = true;
             cbxItem5.IntegralHeight = false;
             cbxItem5.ItemHeight = 15;
@@ -592,6 +645,7 @@
             // cbxItem9
             // 
             cbxItem9.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxItem9.FormattingEnabled = true;
             cbxItem9.IntegralHeight = false;
             cbxItem9.Location = new Point(388, 148);
@@ -604,6 +658,7 @@
             // cbxItem3
             // 
             cbxItem3.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem3.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxItem3.FormattingEnabled = true;
             cbxItem3.IntegralHeight = false;
             cbxItem3.ItemHeight = 15;
@@ -617,6 +672,7 @@
             // lblItemColumn2
             // 
             lblItemColumn2.AutoSize = true;
+            lblItemColumn2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItemColumn2.Location = new Point(453, 41);
             lblItemColumn2.Name = "lblItemColumn2";
             lblItemColumn2.Size = new Size(31, 15);
@@ -626,6 +682,7 @@
             // cbxItem4
             // 
             cbxItem4.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem4.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxItem4.FormattingEnabled = true;
             cbxItem4.IntegralHeight = false;
             cbxItem4.ItemHeight = 15;
@@ -639,6 +696,7 @@
             // cbxItem7
             // 
             cbxItem7.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem7.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxItem7.FormattingEnabled = true;
             cbxItem7.IntegralHeight = false;
             cbxItem7.ItemHeight = 15;
@@ -652,6 +710,7 @@
             // lblItemColumn1
             // 
             lblItemColumn1.AutoSize = true;
+            lblItemColumn1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItemColumn1.Location = new Point(120, 40);
             lblItemColumn1.Name = "lblItemColumn1";
             lblItemColumn1.Size = new Size(31, 15);
@@ -661,6 +720,7 @@
             // lblItem6
             // 
             lblItem6.AutoSize = true;
+            lblItem6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItem6.Location = new Point(353, 62);
             lblItem6.Name = "lblItem6";
             lblItem6.Size = new Size(19, 15);
@@ -670,6 +730,7 @@
             // cbxItem2
             // 
             cbxItem2.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxItem2.FormattingEnabled = true;
             cbxItem2.IntegralHeight = false;
             cbxItem2.ItemHeight = 15;
@@ -683,6 +744,7 @@
             // cbxItem6
             // 
             cbxItem6.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbxItem6.FormattingEnabled = true;
             cbxItem6.IntegralHeight = false;
             cbxItem6.ItemHeight = 15;
@@ -696,6 +758,7 @@
             // lblItem1
             // 
             lblItem1.AutoSize = true;
+            lblItem1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lblItem1.Location = new Point(19, 61);
             lblItem1.Name = "lblItem1";
             lblItem1.Size = new Size(19, 15);
@@ -704,7 +767,10 @@
             // 
             // cbxItem1
             // 
+            cbxItem1.BackColor = Color.White;
             cbxItem1.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxItem1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            cbxItem1.ForeColor = SystemColors.WindowText;
             cbxItem1.FormattingEnabled = true;
             cbxItem1.IntegralHeight = false;
             cbxItem1.ItemHeight = 15;
@@ -717,19 +783,25 @@
             // 
             // btnOrder
             // 
-            btnOrder.Font = new Font("Yu Gothic UI", 12F);
+            btnOrder.BackColor = Color.SlateGray;
+            btnOrder.BackgroundImageLayout = ImageLayout.None;
+            btnOrder.FlatStyle = FlatStyle.Flat;
+            btnOrder.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            btnOrder.ForeColor = Color.White;
             btnOrder.Location = new Point(745, 622);
             btnOrder.Name = "btnOrder";
             btnOrder.Size = new Size(150, 63);
             btnOrder.TabIndex = 58;
             btnOrder.Text = "注文する";
-            btnOrder.UseVisualStyleBackColor = true;
+            btnOrder.UseMnemonic = false;
+            btnOrder.UseVisualStyleBackColor = false;
             btnOrder.Click += CheckOrder;
             // 
             // ORDER
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = Color.Azure;
             ClientSize = new Size(932, 725);
             Controls.Add(btnOrder);
             Controls.Add(grbBill);
