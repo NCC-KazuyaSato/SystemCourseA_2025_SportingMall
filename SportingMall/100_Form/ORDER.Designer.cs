@@ -128,7 +128,7 @@
             txtDeliveryTel.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtDeliveryTel.ImeMode = ImeMode.Disable;
             txtDeliveryTel.Location = new Point(30, 256);
-            txtDeliveryTel.MaxLength = 7;
+            txtDeliveryTel.MaxLength = 15;
             txtDeliveryTel.Name = "txtDeliveryTel";
             txtDeliveryTel.ShortcutsEnabled = false;
             txtDeliveryTel.Size = new Size(180, 23);
@@ -279,7 +279,7 @@
             txtBillTel.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             txtBillTel.ImeMode = ImeMode.Disable;
             txtBillTel.Location = new Point(30, 256);
-            txtBillTel.MaxLength = 7;
+            txtBillTel.MaxLength = 15;
             txtBillTel.Name = "txtBillTel";
             txtBillTel.ShortcutsEnabled = false;
             txtBillTel.Size = new Size(180, 23);
