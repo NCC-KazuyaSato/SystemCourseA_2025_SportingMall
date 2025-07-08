@@ -548,10 +548,10 @@ namespace SportingMall
                 int memberAmount = int.Parse(Member.Amount);
 
                 //会員情報から会員区分を取得
-                string memberCode = Member.PostCode;
+                string category = Member.Category;
 
                 //会員区分が無料
-                if (memberCode.Equals("0") == true)
+                if (category.Equals("0") == true)
                 {
                     //累計購入金額が10万未満
                     if (memberAmount < 100_000 == true)
@@ -576,7 +576,7 @@ namespace SportingMall
                     }
                 }
                 //会員区分が有料
-                else if (memberCode.Equals("1") == true)
+                else if (category.Equals("1") == true)
                 {
                     //累計購入金額が10万未満
                     if (memberAmount < 100_000 == true)
