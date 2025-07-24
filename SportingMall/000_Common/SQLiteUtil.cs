@@ -45,7 +45,7 @@ namespace SportingMall
                     StringBuilder sql = new StringBuilder();
                     sql.Append("SELECT ");
                     sql.Append("    COUNT(MemberCode) AS Cnt, ");
-                    sql.Append("    printf('%08d', MemberCode) AS MemberCode, ");
+                    sql.Append("    printf('%08d', MemberCode) AS Code, ");
                     sql.Append("    Name, ");
                     sql.Append("    PostCode, ");
                     sql.Append("    Address, ");
@@ -56,7 +56,7 @@ namespace SportingMall
                     sql.Append("FROM ");
                     sql.Append("    Member ");
                     sql.Append("WHERE ");
-                    sql.Append("    MemberCode = @code ");
+                    sql.Append("    Code = @code ");
                     sql.Append("AND ");
                     sql.Append("    PassWord = @pass ");
                     cmd.CommandText = sql.ToString();
@@ -74,7 +74,7 @@ namespace SportingMall
                         //該当レコードが存在する場合は会員情報をセット
                         if (reader["Cnt"].ToString().Equals("1") == true)
                         {
-                            Member.MemberCode = reader["MemberCode"].ToString();
+                            Member.MemberCode = reader["Code"].ToString();
                             Member.Name = reader["Name"].ToString();
                             Member.PostCode = reader["PostCode"].ToString();
                             Member.Address = reader["Address"].ToString();
