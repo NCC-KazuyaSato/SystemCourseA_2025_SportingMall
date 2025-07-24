@@ -136,6 +136,16 @@ namespace SportingMall {
         }
         
         /// <summary>
+        ///   ログイン認証に失敗しました。
+        ///ユーザIDまたはパスワードが間違っています。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ERR009 {
+            get {
+                return ResourceManager.GetString("ERR009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   注文額が確定しました。
         ///{0}円。 に類似しているローカライズされた文字列を検索します。
         /// </summary>

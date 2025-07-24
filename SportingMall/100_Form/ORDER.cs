@@ -6,15 +6,6 @@ namespace SportingMall
     /// </summary>
     public partial class ORDER : Form
     {
-        /// <summary>会員マスタ</summary>
-        private Member Member;
-
-        /// <summary>商品マスタ</summary>
-        private Product Product;
-
-        /// <summary>在庫マスタ</summary>
-        private Stock Stock;
-
         /// <summary>注文情報リスト</summary>
         private List<OrderInfo> OrderInfoList = new List<OrderInfo>();
 
@@ -25,11 +16,6 @@ namespace SportingMall
         {
             //画面初期化
             InitializeComponent();
-
-            //マスタクラス定義
-            this.Member = new Member();
-            this.Product = new Product();
-            this.Stock = new Stock();
 
             //注文情報クラス定義⇒リスト追加
             this.OrderInfoList.Add(new OrderInfo(cbxItem1, nudItem1));
@@ -56,40 +42,6 @@ namespace SportingMall
                 //エラーメッセージ
                 string errMessage = string.Empty;
 
-                //マスタファイルチェック+読込
-                foreach (var master in new BaseMaster[] { this.Product, this.Stock })
-                {
-                    //ファイルチェック
-                    if (master.CheckFile(ref errMessage) == false)
-                    {
-                        //エラーメッセージを表示
-                        ShowError(errMessage);
-
-                        //画面を閉じる
-                        this.Close();
-                    }
-                }
-
-                //商品マスタレコードチェック+読込
-                if (this.Product.CheckAndReadRecord(ref errMessage) == false)
-                {
-                    //エラーメッセージを表示
-                    ShowError(errMessage);
-
-                    //画面を閉じる
-                    this.Close();
-                }
-
-                //在庫マスタレコードチェック+読込
-                if (this.Stock.CheckAndReadRecord(this.Product.Record, ref errMessage) == false)
-                {
-                    //エラーメッセージを表示
-                    ShowError(errMessage);
-
-                    //画面を閉じる
-                    this.Close();
-                }
-
                 //請求先区分の初期値を設定:未選択
                 this.cbxBillType.SelectedIndex = 0;
 
@@ -98,26 +50,31 @@ namespace SportingMall
 
                 //希望日時の初期値を設定:現在日付から1週間後
                 this.dtpDeadLine.Value = DateTime.Now.AddDays(7);
- 
+
+                //DB接続用クラスを用意
+                SQLiteUtil sqlite = new SQLiteUtil();
+
+                //商品マスタからコンボックスの値を全量取得
+                List<string> itemList = sqlite.GetItemList();
+
                 //商品名コンボックスを順番(1～10)に設定
                 foreach (OrderInfo order in this.OrderInfoList)
                 {
                     //初期値用の空文字をコンボックスに追加
                     order.CmbName.Items.Add(string.Empty);
 
-                    //商品マスタを全件読み込み
-                    foreach (string[] columns in this.Product.Record.Values)
+                    //コンボックスに追加
+                    foreach (string item in itemList)
                     {
-                        //コンボックスに追加
-                        order.CmbName.Items.Add($"{columns[0]} {columns[1]}");
+                        order.CmbName.Items.Add(item);
                     }
                 }
 
-                //届け先情報にユーザ情報の内容を設定
-                txtDeliveryName.Text = this.Member.Name;
-                txtDeliveryPostal.Text = this.Member.PostCode;
-                txtDeliveryAddress.Text = this.Member.Address;
-                txtDeliveryTel.Text = this.Member.Telephone;
+                //届け先情報に会員情報の内容を設定
+                txtDeliveryName.Text = Member.Name;
+                txtDeliveryPostal.Text = Member.PostCode;
+                txtDeliveryAddress.Text = Member.Address;
+                txtDeliveryTel.Text = Member.Telephone;
 
                 //届け先(宛名)の全選択を外す
                 this.txtDeliveryName.SelectionStart = this.txtDeliveryName.Text.Length;
@@ -125,7 +82,10 @@ namespace SportingMall
             catch (Exception ex)
             {
                 //例外エラー処理
-                ExceptionError(ex);
+                ErrorUtil.ExceptionError(ex);
+
+                //画面を閉じる
+                this.Close();
             }
         }
 
@@ -176,18 +136,18 @@ namespace SportingMall
         /// <param name="e"></param>
         private void OrderItemChange(object sender, EventArgs e)
         {
-            //現在選択してる商品名リスト
-            List<string> selectedList = new List<string>();
+            //コンボボックスから除外する商品リスト
+            List<string> removeList = new List<string>();
 
             try
             {
                 //商品名コンボックスの入力内容を順番(1～10)にチェック(1回目)
                 foreach (OrderInfo order in OrderInfoList)
                 {
-                    //商品名が選択されている場合はリストに追加
+                    //商品名が選択されている場合は除外リストに追加
                     if (string.IsNullOrEmpty(order.GetName()) == false)
                     {
-                        selectedList.Add(order.GetName());
+                        removeList.Add(order.GetName().Split(" ")[0]);
                     }
                 }
 
@@ -197,26 +157,25 @@ namespace SportingMall
                     //自身のコンボックスが選択してる商品名を取得
                     string nowSelect = order.GetName();
 
+                    //自身のコンボックスが選択してる商品名を取り除いた除外リストを作成
+                    List<string> tempRemoveList = new List<string>(removeList);
+                    tempRemoveList.Remove(nowSelect.Split(" ")[0]);
+
                     //商品名コンボックス内容を全て消す
                     order.CmbName.Items.Clear();
+
+                    //DB接続用クラスを用意
+                    SQLiteUtil sqlite = new SQLiteUtil();
+
+                    //商品マスタからコンボックスの値を全量取得
+                    List<string> itemList = sqlite.GetItemList(string.Join(",", tempRemoveList.ToArray()));
 
                     //初期値用の空文字をコンボックスに追加
                     order.CmbName.Items.Add(string.Empty);
 
-                    //商品マスタを全件読み込み
-                    foreach (string[] value in Product.Record.Values)
+                    //コンボックスに追加
+                    foreach (string item in itemList)
                     {
-                        //画面表示用に加工
-                        string item = $"{value[0]} {value[1]}";
-
-                        //他のコンボックス選択している商品名 かつ 自身が選択している商品名以外
-                        if (selectedList.Contains(item) == true && item.Equals(nowSelect) == false)
-                        {
-                            //次のレコードに進む
-                            continue;
-                        }
-
-                        //コンボックスに追加
                         order.CmbName.Items.Add(item);
                     }
 
@@ -240,7 +199,10 @@ namespace SportingMall
             catch (Exception ex)
             {
                 //例外エラー用の処理を実行
-                ExceptionError(ex);
+                ErrorUtil.ExceptionError(ex);
+
+                //画面を閉じる
+                this.Close();
             }
         }
 
@@ -260,17 +222,17 @@ namespace SportingMall
                 if (CheckBlank(ref errMessage) == false)
                 {
                     //エラーメッセージを表示
-                    ShowError(errMessage);
+                    ErrorUtil.ShowError(errMessage);
 
                     //処理終了
                     return;
-                }
+                }   
 
                 //在庫チェック
                 if (CheckStock(ref errMessage) == false)
                 {
                     //エラーメッセージを表示
-                    ShowError(errMessage);
+                    ErrorUtil.ShowError(errMessage);
 
                     //処理終了
                     return;
@@ -285,16 +247,16 @@ namespace SportingMall
                 //消費税を適用
                 amountSum = (int)(amountSum * 1.1);
 
-                //在庫マスタファイル書き換え
-                this.Stock.UpdateFile();
-
                 //注文完了のメッセージを表示
                 MessageBox.Show(string.Format(MessageResource.INF001, amountSum), "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 //例外エラー用の処理を実行
-                ExceptionError(ex);
+                ErrorUtil.ExceptionError(ex);
+
+                //画面を閉じる
+                this.Close();
             }
         }  
 
@@ -412,19 +374,11 @@ namespace SportingMall
                         //コンボボックスの値から商品コードと商品名を配列で取得
                         string[] item = order.GetName().Split(' ');
 
-                        //商品の在庫数(全倉庫分の在庫数を計上)
-                        int stockSum = 0;
+                        //DB接続用クラスを用意
+                        SQLiteUtil sqlite = new SQLiteUtil();
 
-                        //在庫マスタのキー情報(倉庫コード+商品コード)を全件読み込み
-                        foreach (string key in this.Stock.Record.Keys)
-                        {
-                            //在庫マスタの商品コードと選択している商品コードが一致
-                            if (key.Substring(key.Length - 5).Equals(item[0]) == true)
-                            {
-                                //商品の在庫数を加算
-                                stockSum += int.Parse(this.Stock.Record[key][2]);
-                            }
-                        }
+                        //在庫マスタから全倉庫分の商品在庫数を取得
+                        int stockSum = sqlite.GetAllStock(item[0]);
 
                         //入力注文数に対して全倉庫分の在庫数でも足りない場合
                         if (order.GetCount() > stockSum == true)
@@ -460,6 +414,9 @@ namespace SportingMall
 
             try
             {
+                //DB接続用クラスを用意
+                SQLiteUtil sqlite = new SQLiteUtil();
+
                 //商品名コンボックスの入力内容を順番(1～10)にチェック
                 foreach (OrderInfo order in this.OrderInfoList)
                 {
@@ -472,37 +429,34 @@ namespace SportingMall
                         //入力した注文数を取得
                         int orderCnt = order.GetCount();
 
-                        //在庫マスタ全件をキー項目の昇順で処理
-                        foreach (var record in this.Stock.Record.OrderBy(x => x.Key))
+                        //倉庫別の商品在庫数を取得
+                        Dictionary<string, int> stockList = sqlite.GetStockList(item[0]);
+
+                        //在庫数を倉庫ごとに更新
+                        foreach (string key in stockList.Keys)
                         {
-                            //在庫マスタの商品コードと選択している商品コードが一致
-                            if (record.Key.Substring(record.Key.Length - 5).Equals(item[0]) == true)
+                            int stockCnt = stockList[key];
+
+                            //入力した注文数が在庫数と同等または上回る
+                            if (orderCnt >= stockCnt)
                             {
-                                //在庫マスタから在庫数を取得
-                                int stockCnt = int.Parse(record.Value[2]);
+                                //注文数から在庫数分を引く
+                                orderCnt -= stockCnt;
 
-                                //入力した注文数が在庫数と同等または上回る
-                                if (orderCnt >= stockCnt)
-                                {
-                                    //注文数から在庫数分を引く
-                                    orderCnt -= stockCnt;
-
-                                    //在庫数を0に設定
-                                    stockCnt = 0;  
-                                }
-                                else
-                                {
-                                    //在庫数から注文数分を引く
-                                    stockCnt -= orderCnt;
-
-                                    //注文数を0に設定
-                                    orderCnt = 0;
-                                }
-
-                                //在庫マスタの在庫数を書き換え⇒メモリ上に展開している在庫マスタに反映
-                                record.Value[2] = stockCnt.ToString();
-                                Stock.Record[record.Key] = record.Value;
+                                //在庫数を0に設定
+                                stockCnt = 0;
                             }
+                            else
+                            {
+                                //在庫数から注文数分を引く
+                                stockCnt -= orderCnt;
+
+                                //注文数を0に設定
+                                orderCnt = 0;
+                            }
+
+                            //在庫マスタ更新
+                            sqlite.UpdateStock(key, item[0], stockCnt);
 
                             //未処理の注文数が0
                             if (orderCnt.Equals(0) == true)
@@ -513,7 +467,7 @@ namespace SportingMall
                         }
 
                         //商品マスタから単価を取得
-                        int unit = int.Parse(this.Product.Record[item[0]][2]);
+                        int unit = sqlite.GetUnitPrice(item[0]);
 
                         //注文額(単価×注文数)を加算
                         rtnTotalAmount += unit * order.GetCount();
@@ -611,32 +565,6 @@ namespace SportingMall
                 //呼び出し元に例外エラーを渡す
                 throw;
             }
-        }
-
-        /// <summary>
-        ///    エラーメッセージ表示
-        /// </summary>
-        /// <param name="argMessage">メッセージ内容</param>
-        private void ShowError(string argMessage)
-        {
-            //エラーメッセージ表示
-            MessageBox.Show(argMessage, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        /// <summary>
-        ///    例外エラー処理
-        /// </summary>
-        /// <param name="argEX">例外クラス</param>
-        private void ExceptionError(Exception argEX)
-        {
-            //エラーログ記録
-            Log.logger.Error($"{argEX.Message}\t{argEX.StackTrace}");
-
-            //エラーメッセージ表示
-            MessageBox.Show($"{argEX.Message}\nエラーログを確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //画面を閉じる
-            this.Close();
         }
     }
 
